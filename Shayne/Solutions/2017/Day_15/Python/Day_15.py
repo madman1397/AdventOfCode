@@ -1,0 +1,1 @@
+crudeInput = open("AdventOfCode\\Input\\Control\\2017\\Day_15.txt").readlines()
