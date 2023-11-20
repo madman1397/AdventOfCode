@@ -1,0 +1,12 @@
+#Ignoring Specified Filetypes:
+.env
+
+#Ignoring Extension types:
+
+#Ignoring Specified Directories (by name):
+/logs
+
+#Ignoring Specified Directories (by PATH):
+Input/Shayne/
+Input/Max/
+Shayne

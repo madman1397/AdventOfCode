@@ -1,0 +1,3 @@
+Personalized inputs have been redacted to comply with AOC's legal terms, but are normally stored here as '{name}\{year}\day_#.txt'
+
+You may see references to such files within solutions, despite such directories and files no longer existing here
