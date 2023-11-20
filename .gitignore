@@ -7,6 +7,5 @@
 /logs
 
 #Ignoring Specified Directories (by PATH):
-Input/Shayne/
-Input/Max/
-Shayne
+/Input/Shayne
+/Input/Max
