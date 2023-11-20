@@ -1,6 +1,6 @@
 import os
 
-with open("Input\Control\\2022\Day_8.txt")as f:
+with open("AdventOfCode\\Input\\Shayne\\2022\\Day_8.txt")as f:
     map_str = f.read()
 treeRows = map_str.strip().split("\n")
 #----------------------------------------------------------------------------------------------------

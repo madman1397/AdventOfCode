@@ -1,4 +1,4 @@
-strategyGuide = open("Input\Shayne\\2022\Day_2.txt").readlines()
+strategyGuide = open("AdventOfCode\\Input\\Shayne\\2022\\Day_2.txt").readlines()
 
 #define an empty chart that will store each rounds point result as the tournament is played
 pointChart = []

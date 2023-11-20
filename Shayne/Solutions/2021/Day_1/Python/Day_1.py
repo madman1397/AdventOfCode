@@ -1,6 +1,6 @@
 import os
 
-src = open("Input\Shayne\\2021\Day_1.txt").readlines() #import source data to var
+src = open("AdventOfCode\\Input\\Shayne\\2021\\Day_1.txt").readlines() #import source data to var
 
 #define variables
 increases = 0 #counts instances of increases from set A to B (A<B) occur within the dataset.

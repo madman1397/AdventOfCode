@@ -1,4 +1,4 @@
-rucksackList = open("Input\Shayne\\2022\Day_3.txt").readlines()
+rucksackList = open("AdventOfCode\\Input\\Shayne\\2022\\Day_3.txt").readlines()
 
 priorityList = []
 groupPrioList = []

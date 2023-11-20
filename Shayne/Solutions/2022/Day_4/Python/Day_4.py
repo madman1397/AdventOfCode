@@ -1,4 +1,4 @@
-sectionIDs = open("Input\Shayne\\2022\Day_4.txt").readlines()
+sectionIDs = open("AdventOfCode\\Input\\Shayne\\2022\\Day_4.txt").readlines()
 
 #Clean data in currently analyzed line for easier use later
 def cleanData(rawPairs):

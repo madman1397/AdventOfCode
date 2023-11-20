@@ -1,5 +1,5 @@
 #import raw .txt source
-sourceData = open("Input\Shayne\\2022\Day_5.txt").readlines()
+sourceData = open("AdventOfCode\\Input\\Shayne\\2022\\Day_5.txt").readlines()
 #----------------------------------------------------------------------------------------------------
 
 #trim line breaks from source, assign lines as list entries
@@ -65,9 +65,9 @@ for command in commandList:
 #print(newPiles)
 stackTops = []
 stackTopsMulti = []
-#for i in newPiles:
-    #stackTops.append(newPiles[newPiles.index(i)][-1])
-#print("In step one, the top crates from left to right are " + str(stackTops))
+for i in newPiles:
+    stackTops.append(newPiles[newPiles.index(i)][-1])
+print("In step one, the top crates from left to right are " + str(stackTops))
 for i in multiCranePiles:
     stackTopsMulti.append(multiCranePiles[multiCranePiles.index(i)][-1])
 print("In step two, the top crates from left to right are " + str(stackTopsMulti))

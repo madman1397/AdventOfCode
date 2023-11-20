@@ -1,5 +1,5 @@
 #import raw .txt source
-sourceData = open("Input\Shayne\\2022\Day_6.txt").readlines()
+sourceData = open("AdventOfCode\\Input\\Shayne\\2022\\Day_6.txt").readlines()
 #----------------------------------------------------------------------------------------------------
 
 packetWindow = []

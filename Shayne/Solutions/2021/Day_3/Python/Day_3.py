@@ -1,4 +1,4 @@
-crude = open("Input\Shayne\\2021\Day_3.txt").readlines()
+crude = open("AdventOfCode\\Input\\Shayne\\2021\\Day_3.txt").readlines()
 #----------------------------------------#
 #scrub data into a more iterable state - write into list diagnosticReport
 diagnosticReport = []

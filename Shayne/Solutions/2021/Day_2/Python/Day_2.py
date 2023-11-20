@@ -1,6 +1,6 @@
 import os
 
-movementList = open("Input\Shayne\\2021\Day_2.txt").readlines()
+movementList = open("AdventOfCode\\Input\\Shayne\\2021\\Day_2.txt").readlines()
 
 horizontalPosition = 0
 depth = 0
