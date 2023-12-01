@@ -9,3 +9,6 @@
 #Ignoring Specified Directories (by PATH):
 /Input/Shayne
 /Input/Max
+
+#ignore pycache
+*/__pycache__
