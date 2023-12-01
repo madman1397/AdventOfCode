@@ -11,4 +11,4 @@
 /Input/Max
 
 #ignore pycache
-*/__pycache__
+*.pyc
