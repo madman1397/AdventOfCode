@@ -6,19 +6,19 @@ control_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir,os.p
 control_path = os.path.abspath(control_path)
 print(control_path)
 control_file = open(control_path)
-control_input = open(control_path).readlines()
+control_input = control_file.readlines()
 control_file.close()
 
 control_P2_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir,os.pardir, os.pardir, "Input/Control/2023/Day_1P2.txt")
 control_P2_path = os.path.abspath(control_P2_path)
 control_P2_file = open(control_P2_path)
-control_P2_input = open(control_P2_path).readlines()
+control_P2_input = control_P2_file.readlines()
 control_P2_file.close()
 
 puzzle_path = control_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir,os.pardir, os.pardir, "Input/Max/2023/Day_1.txt")
 puzzle_path = os.path.abspath(control_path)
 puzzle_file = open(control_path)
-puzzle_input = open(control_path).readlines()
+puzzle_input = puzzle_file.readlines()
 puzzle_file.close()
 
 def checkCalibrationLine(cal_line):
@@ -114,7 +114,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(True, control_file.closed)
         self.assertEqual(True, bool(control_input and all(isinstance(elem, str) for elem in control_input)))
 
-    def test_control_file(self):
+    def test_control_P2_file(self):
         self.assertEqual(True, isinstance(control_P2_file, io.TextIOWrapper))
         self.assertEqual(True, control_P2_file.closed)
         self.assertEqual(True, bool(control_P2_input and all(isinstance(elem, str) for elem in control_P2_input)))
