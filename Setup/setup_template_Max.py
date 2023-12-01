@@ -10,13 +10,13 @@ import unittest
 stringPath_lines_control = """
 control_path = os.path.abspath(control_path)
 control_file = open(control_path)
-control_input = open(control_path).readlines()
+control_input = control_file.readlines()
 control_file.close()
 """
 stringPath_lines_puzzle = """
 puzzle_path = os.path.abspath(control_path)
 puzzle_file = open(control_path)
-puzzle_input = open(control_path).readlines()
+puzzle_input = puzzle_file.readlines()
 puzzle_file.close()
 """
 stringMain = """
@@ -66,7 +66,7 @@ def main():
             if not os.path.exists(dayPath):
                 os.makedirs(dayPath)
                 print("Created DIR "+ dayPath)
-                stringControl_path = '\ncontrol_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir,os.pardir, os.pardir, "Input\\\\Control\\\\'+str(yearCheck)+'\\\\'+day+'.txt")'
+                stringControl_path = '\ncontrol_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir, os.pardir, os.pardir, "Input\\\\Control\\\\'+str(yearCheck)+'\\\\'+day+'.txt")'
                 stringPuzzle_path = 'puzzle_path = control_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir,os.pardir, os.pardir, "Input\\\\Max\\\\'+str(yearCheck)+'\\\\'+day+'.txt")'
                 with open(os.path.join(dayPath,str(day+'.py')), "w") as file:
                     file.write(stringImport_lines)
