@@ -1,25 +1,8 @@
+import sys
+sys.path.insert(1, 'Setup')
+import input
 import io
-import os
 import unittest
-
-control_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir,os.pardir, os.pardir, "Input/Control/2023/Day_1.txt")
-control_path = os.path.abspath(control_path)
-print(control_path)
-control_file = open(control_path)
-control_input = control_file.readlines()
-control_file.close()
-
-control_P2_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir,os.pardir, os.pardir, "Input/Control/2023/Day_1P2.txt")
-control_P2_path = os.path.abspath(control_P2_path)
-control_P2_file = open(control_P2_path)
-control_P2_input = control_P2_file.readlines()
-control_P2_file.close()
-
-puzzle_path = control_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir,os.pardir, os.pardir, "Input/Max/2023/Day_1.txt")
-puzzle_path = os.path.abspath(control_path)
-puzzle_file = open(control_path)
-puzzle_input = puzzle_file.readlines()
-puzzle_file.close()
 
 def checkCalibrationLine(cal_line):
     retValue = ""
@@ -91,40 +74,44 @@ def getBracketNumbers_P2(calibration_list):
     return retList
 
 if __name__ == '__main__':
-    numberList = getBracketNumbers(control_input)
+    control = input.getControlInput('2023', 'Day_1')
+    numberList = getBracketNumbers(control)
     numberAdded = sum(numberList)
     print("P1 Control = " + str(numberAdded))
 
-    numberList = getBracketNumbers(puzzle_input)
+    puzzle = input.getPuzzleInput('2023', 'Day_1')
+    numberList = getBracketNumbers(puzzle)
     numberAdded = sum(numberList)
     print("P1 Puzzle = " + str(numberAdded))
 
-    numberList = getBracketNumbers_P2(control_P2_input)
+    control_P2 = input.getControlInput('2023', 'Day_1P2')
+    numberList = getBracketNumbers_P2(control_P2)
     numberAdded = sum(numberList)
     print("P2 Control = " + str(numberAdded))
 
-    numberList = getBracketNumbers_P2(puzzle_input)
+    numberList = getBracketNumbers_P2(puzzle)
     numberAdded = sum(numberList)
     print("P2 Puzzle = " + str(numberAdded))
+
+################################################################
 
 class TestStringMethods(unittest.TestCase):
 
     def test_control_file(self):
-        self.assertEqual(True, isinstance(control_file, io.TextIOWrapper))
-        self.assertEqual(True, control_file.closed)
-        self.assertEqual(True, bool(control_input and all(isinstance(elem, str) for elem in control_input)))
+        control = input.getControlInput('2023', 'Day_1')
+        self.assertEqual(True, bool(control) and all(isinstance(elem, str) for elem in control))
 
     def test_control_P2_file(self):
-        self.assertEqual(True, isinstance(control_P2_file, io.TextIOWrapper))
-        self.assertEqual(True, control_P2_file.closed)
-        self.assertEqual(True, bool(control_P2_input and all(isinstance(elem, str) for elem in control_P2_input)))
+        control_P2 = input.getControlInput('2023', 'Day_1P2')
+        self.assertEqual(True, bool(control_P2) and all(isinstance(elem, str) for elem in control_P2))
 
     def test_puzzle_file(self):
-        self.assertEqual(True, isinstance(puzzle_file, io.TextIOWrapper))
-        self.assertEqual(True, puzzle_file.closed)
-        self.assertEqual(True, bool(puzzle_input and all(isinstance(elem, str) for elem in puzzle_input)))
+        puzzle = input.getPuzzleInput('2023', 'Day_1')
+        self.assertEqual(True, bool(puzzle) and all(isinstance(elem, str) for elem in puzzle))
 
     def test_getNumbers(self):
-        self.assertEqual(getBracketNumbers(control_input), [12, 38, 15, 77])
-        self.assertEqual(getBracketNumbers_P2(control_P2_input), [29, 83, 13, 24, 42, 14, 76])
+        control = input.getControlInput('2023', 'Day_1')
+        control_P2 = input.getControlInput('2023', 'Day_1P2')
+        self.assertEqual(getBracketNumbers(control), [12, 38, 15, 77])
+        self.assertEqual(getBracketNumbers_P2(control_P2), [29, 83, 13, 24, 42, 14, 76])
         
