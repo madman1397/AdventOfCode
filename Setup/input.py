@@ -11,8 +11,8 @@ def getControlInput(stringYear, stringDay):
     control_file.close()
     return control_input
 
-def getPuzzleInput(stringYear, stringDay):
-    puzzle_path = os.path.join(os.path.dirname(__file__), os.pardir, "Input/Max/" + stringYear + "/" + stringDay + ".txt")
+def getPuzzleInput(stringYear, stringDay, userName = 'Max'):
+    puzzle_path = os.path.join(os.path.dirname(__file__), os.pardir, "Input/"+ userName + "/" + stringYear + "/" + stringDay + ".txt")
     puzzle_path = os.path.abspath(puzzle_path)
     puzzle_file = open(puzzle_path)
     puzzle_input = puzzle_file.readlines()
