@@ -66,8 +66,8 @@ def main():
             if not os.path.exists(dayPath):
                 os.makedirs(dayPath)
                 print("Created DIR "+ dayPath)
-                stringControl_path = '\ncontrol_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir, os.pardir, os.pardir, "Input\\\\Control\\\\'+str(yearCheck)+'\\\\'+day+'.txt")'
-                stringPuzzle_path = 'puzzle_path = control_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir,os.pardir, os.pardir, "Input\\\\Max\\\\'+str(yearCheck)+'\\\\'+day+'.txt")'
+                stringControl_path = '\ncontrol_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir, os.pardir, os.pardir, "Input/Control/'+str(yearCheck)+'/'+day+'.txt")'
+                stringPuzzle_path = 'puzzle_path = control_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir,os.pardir, os.pardir, "Input/Max/'+str(yearCheck)+'/'+day+'.txt")'
                 with open(os.path.join(dayPath,str(day+'.py')), "w") as file:
                     file.write(stringImport_lines)
                     file.write(stringControl_path)
