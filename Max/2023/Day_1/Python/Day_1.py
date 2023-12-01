@@ -2,19 +2,20 @@ import io
 import os
 import unittest
 
-control_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir,os.pardir, os.pardir, "Input\\Control\\2023\\Day_1.txt")
+control_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir,os.pardir, os.pardir, "Input/Control/2023/Day_1.txt")
 control_path = os.path.abspath(control_path)
+print(control_path)
 control_file = open(control_path)
 control_input = open(control_path).readlines()
 control_file.close()
 
-control_P2_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir,os.pardir, os.pardir, "Input\\Control\\2023\\Day_1P2.txt")
+control_P2_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir,os.pardir, os.pardir, "Input/Control/2023/Day_1P2.txt")
 control_P2_path = os.path.abspath(control_P2_path)
 control_P2_file = open(control_P2_path)
 control_P2_input = open(control_P2_path).readlines()
 control_P2_file.close()
 
-puzzle_path = control_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir,os.pardir, os.pardir, "Input\\Max\\2023\\Day_1.txt")
+puzzle_path = control_path = os.path.join(os.path.dirname(__file__), os.pardir, os.pardir,os.pardir, os.pardir, "Input/Max/2023/Day_1.txt")
 puzzle_path = os.path.abspath(control_path)
 puzzle_file = open(control_path)
 puzzle_input = open(control_path).readlines()
