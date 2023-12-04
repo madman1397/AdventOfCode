@@ -1,5 +1,4 @@
 import os
-import re
 #Define input, and strip data
 Type = 'Shayne'
 Input = [line.strip() for line in open(os.path.join(os.path.sep.join(__file__.split(os.path.sep)[:6]),'Input',Type,__file__.split(os.sep)[-4],(__file__.split(os.sep)[-1]).split('.')[0]+'.txt')).readlines()]
@@ -35,7 +34,7 @@ def Words2Nums(line):
             while frameEnd<=frameStart+maxLen:
                 frame = line[frameStart:frameEnd]
                 if frame in NumDict:
-                    numLine.append(NumDict[frame])              
+                    numLine.append(NumDict[frame])
                 frameEnd +=1
             frameStart += 1
     #return all numerics, verbose and int, in order of occurance, joined as one int (ex. seven3p5nine --> 7359)
