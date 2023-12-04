@@ -19,6 +19,7 @@ def splitLine(strLine):
     strCard = strLine.split(':')[0].split()[1]
     numList = splitCard(strLine)
     numList.append(strCard)
+    numList.append(1)
 
     return numList
 
@@ -28,7 +29,7 @@ def multiSplitLine(listLines):
         retValue.append(splitLine(line))
 
     return retValue
-
+"""
 def duplicateCard(listCards, cardNum):
     for idx, card in enumerate(listCards):
         if int(card[2]) == cardNum:
@@ -36,7 +37,14 @@ def duplicateCard(listCards, cardNum):
             break
 
     return listCards  
+"""
+def duplicateCard(listCards, cardNum, amount):
+    for idx, card in enumerate(listCards):
+        if int(card[2]) == cardNum:
+            card[3] += amount
+            break
 
+    return listCards  
 
 def getWinning(numList):
     retValue = 0
@@ -46,6 +54,16 @@ def getWinning(numList):
             if draw == wNum:
                 if retValue == 0: retValue += 1
                 else: retValue *= 2
+    
+    return retValue
+
+def getMatches(numList):
+    retValue = 0
+
+    for draw in numList[0]:
+        for wNum in numList[1]:
+            if draw == wNum:
+                retValue += 1
     
     return retValue
 
@@ -59,19 +77,19 @@ def collectWinnings(strlist):
     return retValue
 
 def collectCards(strlist):
-    retValue = len(strlist)
+    retValue = 0
     winnings = 0
     listCards = multiSplitLine(strlist)
 
     for idx, card in enumerate(listCards):
-        winnings += getWinning(card)
-        print(winnings)
-        retValue += winnings
+        winnings = getMatches(card)
         while winnings > 0:
-            listCards = duplicateCard(listCards, int(card[2])+winnings)
+            listCards = duplicateCard(listCards, int(card[2])+winnings, card[3])
             winnings -= 1
+        
+    for idx, card in enumerate(listCards):
+        retValue += card[3]
         print(card)
-
 
     return retValue
 
@@ -84,8 +102,11 @@ if __name__ == '__main__':
     print('---PUZZLE P1---')
     print(collectWinnings(puzzle))
 
-    print('---CONTROL P1---')
-    #print(collectWinnings(control))
+    print('---CONTROL P2---')
+    print(collectCards(control))
+
+    print('---PUZZLE P2---')
+    print(collectCards(puzzle))
                 
 ################################################################
 class TestStringMethods(unittest.TestCase):
