@@ -29,6 +29,9 @@ class mapObj:
         self.mapName = mapName
         self.line2ranges(strLine)
 
+    def getNumList(self):
+        return [self.destRange_start, self.sourceRange_start, self.rangeLength]
+
     def line2ranges(self, strLine):
         self.destRange_start = None
         self.sourceRange_start = None
@@ -54,17 +57,17 @@ def getSplitLine(strLine):
 
 def createObj(listLines):
     hold = holdList()
+    mapName = None
 
     for idx, strLine in enumerate(listLines):
-        mapName = None
         if idx == 0:
             seeds = getSplitLine(strLine)[1].split()
             for idx, cNum in enumerate(seeds):
                 hold.seed_list.append(int(cNum))
         else:
-            if ':' not in strLine and strLine != '\n':
-                mapName = strLine.split(':')
-            else:
+            if ':' in strLine and strLine != '\n':
+                mapName = strLine.split(' ')[0]
+            elif strLine != '\n':
                 if mapName == 'seed-to-soil':
                     hold.seed2soil_list.append(mapObj(mapName, strLine))
                 elif mapName == 'soil-to-fertilizer':
@@ -109,11 +112,7 @@ class TestStringMethods(unittest.TestCase):
     def test_createObj(self):
         control = input.getControlInput('2023', 'Day_5')
         self.assertEqual([79, 14, 55, 13], createObj(control).seed_list)
-        self.assertEqual(50, createObj(control).seed2soil_list[0])
-        self.assertEqual([79, 14, 55, 13], createObj(control).seed_list)
-        self.assertEqual([79, 14, 55, 13], createObj(control).seed_list)
-        self.assertEqual([79, 14, 55, 13], createObj(control).seed_list)
-        self.assertEqual([79, 14, 55, 13], createObj(control).seed_list)
+        self.assertEqual([50, 98, 2], createObj(control).seed2soil_list[0].getNumList())
 
     def test_getSplitLines(self):
         control = 'seeds: 79 14 55 13\n'
