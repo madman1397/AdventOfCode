@@ -1,7 +1,8 @@
 import os
+import math
 # THIS SECTION IS STRICTLY FOR DYNAMICALLY PULLING MY CORRESPONDING INPUT TXT AND IS BASED OFF MY DIRECTORY STRUCTURING, 
 # THIS WILL LIKELY NOT BE APPLICABLE TO YOU UNLESS YOU USE THE SAME STRUCTURING.
-Type = 'Control'
+Type = 'Shayne'
 Year = __file__.split(os.sep)[-4:-3][0]
 Day = __file__.split(os.sep)[-3:-2][0]
 print('Advent Of Code',Year,Day)
@@ -29,17 +30,28 @@ def formatInput(file):
 
 # Take in: race time (x) and opponent score (y) as [x,y] - Return: button hold times for opponent as deviation from half race time
 def opponentDeviation(raceStats):
-    print(raceStats)
-
+    # Unpack the raceStats tuple
+    raceTime, opDistance = raceStats
+    # Use quadratic formula to determine how long the opponent pressed the button (two possibilities unless 50% race time and odd)
+    discriminant = raceTime**2 - 4*opDistance
+    maxHoldTime = math.ceil((raceTime+((discriminant)**0.5))/2)
+    minHoldTime = math.floor((raceTime-((discriminant)**0.5))/2)
+    deviation = maxHoldTime-(minHoldTime+1)
+    return deviation
 
 def main():
     raceList = formatInput(Input)
     winMargin = []
     for race in raceList:
-        time = race[0]
-        opScore = race[1]
         opDev = opponentDeviation(race)
-        print(time,opScore)
+        winMargin.append(opDev)
+        print(opDev)
+    print('Part One:',math.prod(winMargin))
+
+    #Part Two:
+    P2Time = int(''.join([str(i[0]) for i in raceList]))
+    P2Dist = int(''.join([str(i[1]) for i in raceList]))
+    print(opponentDeviation([P2Time,P2Dist]))
 
 
 if __name__ == '__main__':
