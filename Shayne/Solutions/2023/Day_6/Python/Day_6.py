@@ -2,7 +2,7 @@ import os
 import math
 # THIS SECTION IS STRICTLY FOR DYNAMICALLY PULLING MY CORRESPONDING INPUT TXT AND IS BASED OFF MY DIRECTORY STRUCTURING, 
 # THIS WILL LIKELY NOT BE APPLICABLE TO YOU UNLESS YOU USE THE SAME STRUCTURING.
-Type = 'Shayne'
+Type = 'Control'
 Year = __file__.split(os.sep)[-4:-3][0]
 Day = __file__.split(os.sep)[-3:-2][0]
 print('Advent Of Code',Year,Day)
@@ -51,7 +51,7 @@ def main():
     #Part Two:
     P2Time = int(''.join([str(i[0]) for i in raceList]))
     P2Dist = int(''.join([str(i[1]) for i in raceList]))
-    print(opponentDeviation([P2Time,P2Dist]))
+    print('Part Two:',opponentDeviation([P2Time,P2Dist]))
 
 
 if __name__ == '__main__':
