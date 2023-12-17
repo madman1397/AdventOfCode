@@ -9,7 +9,7 @@ card_dict = {
 'A' : 14,
 'K' : 13,
 'Q' : 12,
-'J' : 11,
+'J' : 1,
 'T' : 10,
 '9' : 9,
 '8' : 8,
@@ -48,6 +48,7 @@ class Hand:
     bid = None
     cardsCntDict = None
     typeRank = None
+    jokerRank = None
     strengthList = None
 
     def __init__(self, cards, bid) -> None:
@@ -56,6 +57,7 @@ class Hand:
         self.cardsCntDict = {}
         self.typeRank = None
         self.strengthList = []
+        self.jokerRank = None
         self.fillRank()
         self.fillStrength()
 
@@ -67,25 +69,46 @@ class Hand:
                 self.cardsCntDict[card] = 1
 
         self.cardsCntDict = dict(sorted(self.cardsCntDict.items(), key=lambda item: item[1], reverse=True))
-        try:
-            first_entry = list(self.cardsCntDict.items())[0][1]
-            second_entry = list(self.cardsCntDict.items())[1][1]
-        except:
-            first_entry = list(self.cardsCntDict.items())[0][1]
-        if first_entry == 2 and second_entry == 2:
-                self.typeRank = rank_dict[22]
-        elif first_entry == 3 and second_entry == 2:
-                self.typeRank = rank_dict[32]
-        else:
-            self.typeRank = rank_dict[first_entry]
+        first_key, first_entry  = 0, 0
+        second_key, second_entry = 0, 0
 
+        
+        first_key, first_entry = list(self.cardsCntDict.items())[0]
+        try:
+            second_key, second_entry = list(self.cardsCntDict.items())[1]
+        except:
+            pass
+        self.typeRank = self.determinRank(first_entry, second_entry)
+
+        try:
+            self.jokerRank = self.cardsCntDict['J']
+            if first_key != 'J':
+                first_entry += self.jokerRank
+            elif second_entry != 0:
+                first_entry += second_entry
+        except:
+            pass
+        self.jokerRank = self.determinRank(first_entry, second_entry)
+
+    def determinRank(self, first_entry, second_entry):
+        retValue = 0
+        if first_entry == 2 and second_entry == 2:
+            retValue = rank_dict[22]
+        elif first_entry == 3 and second_entry == 2:
+                retValue = rank_dict[32]
+        else:
+            retValue = rank_dict[first_entry]
+        return retValue
 
     def fillStrength(self):
         for card in self.cards:
             self.strengthList.append(card_dict[card])
 
 def sortHands(hands):
-    sorted_hands = sorted(hands, key=lambda hand: (hand.typeRank, *hand.strengthList), reverse=False)
+    sorted_hands = sorted(hands, key=lambda hand: (hand.jokerRank, *hand.strengthList), reverse=False) #hand.typeRank,
+    for hand in sorted_hands:
+            #print("Hand:", hand.cards, "JokerRank:", rank2string_dict[hand.jokerRank], "HandStrenght:", hand.strengthList) #"NormalRank:", rank2string_dict[hand.typeRank],
+            pass
     return sorted_hands
 
 def getSolution(listInput):    
@@ -101,9 +124,9 @@ def getSolution(listInput):
 
 if __name__ == '__main__':
     control = input.getControlInput('2023', 'Day_7')
-    print("Control P1:", getSolution(control))
+    print("Control P2:", getSolution(control))
     puzzle = input.getPuzzleInput('2023', 'Day_7')
-    print("Puzzle P1:", getSolution(puzzle))
+    print("Puzzle P2:", getSolution(puzzle))
     
                 
 ################################################################

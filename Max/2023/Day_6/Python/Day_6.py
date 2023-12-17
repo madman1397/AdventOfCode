@@ -15,8 +15,8 @@ class Race:
         p = -self.time
         q = self.distance
         wins = calcPQ(p, q)
-        self.x_1 = -((-wins[0])//1) - 1
-        self.x_2 =  wins[1]//1 + 1
+        self.x_1 = int(-((-wins[0])//1) - 1)
+        self.x_2 =  int(wins[1]//1 + 1)
         self.numWins = abs(self.x_1 - self.x_2) + 1
     def __init__(self, time, distance):
         self.time = time
@@ -79,7 +79,7 @@ def getSolution_P2(strInput):
 
 if __name__ == '__main__':
     control = input.getControlInput('2023', 'Day_6')
-    print('Control: ' + str(getSolution(control)))
+    print('Control P1: ' + str(getSolution(control)))
 
     puzzle = input.getPuzzleInput('2023', 'Day_6')
     print('Puzzle P1: ' + str(getSolution(puzzle)))
