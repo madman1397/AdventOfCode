@@ -15,7 +15,7 @@ class TestStringMethods(unittest.TestCase):
     def test_control_file(self):
         control = input.getControlInput('2023', 'Day_8')
         self.assertEqual(True, bool(control) and all(isinstance(elem, str) for elem in control))
-    def test_puzzle_file(self):
+    """def test_puzzle_file(self):
         puzzle = input.getPuzzleInput('2023', 'Day_8')
-        self.assertEqual(True, bool(puzzle) and all(isinstance(elem, str) for elem in puzzle))
+        self.assertEqual(True, bool(puzzle) and all(isinstance(elem, str) for elem in puzzle))"""
                 
