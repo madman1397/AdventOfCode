@@ -24,10 +24,31 @@ def getRoutesDict(listInput):
         retValue[key] = [value1, value2]
     return retValue
 
+def solution(listInput):
+    directions = getDirection(listInput[0])
+    routes = getRoutesDict(listInput[2:])
+    countJumps = 0
+    currentPos = 'AAA'
+    index = 0
+    dirLen = len(directions)
+    while True:
+        nextPos = routes[currentPos][directions[index]]
+        currentPos = nextPos
+        countJumps += 1
+        if currentPos == 'ZZZ':
+            break
+        else:
+            index = (index + 1) % dirLen
+    return countJumps
 
 if __name__ == '__main__':
-    pass
+    control = input.getControlInput('2023', 'Day_8')
+    countJumps = solution(control)
+    print('Control =',countJumps)
     
+    puzzle = input.getPuzzleInput('2023', 'Day_8')
+    countJumps = solution(puzzle)
+    print('Puzzle =',countJumps)
                 
 ################################################################
 class TestStringMethods(unittest.TestCase):
