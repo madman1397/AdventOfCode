@@ -4,6 +4,8 @@ sys.path.insert(1, 'Setup')
 import input
 import io
 import unittest
+
+import math
                 
 def getDirection(strInput):
     retValue = []
@@ -46,11 +48,18 @@ def getAllCurrentPos(dictRoutes):
     return startPos
 
 def getNextPos(dictRoutes, currentPos, direction):
-    nextPos = [dictRoutes[key][direction] for key in currentPos if key in dictRoutes]
+    nextPos = [dictRoutes[key][direction] for key in currentPos]
     return nextPos
 
 def checkEnd(currentPos):
-    end = all(s.endswith('Z') for s in currentPos)
+    #end = all(s.endswith('Z') for s in currentPos)
+    end = None
+    for strPos in currentPos:
+        if not strPos.endswith('Z'):
+            end = False
+            break
+        else:
+            end = True
     return end
 
 def solution2(listInput):
@@ -60,12 +69,9 @@ def solution2(listInput):
     currentPos = getAllCurrentPos(routes)
     index = 0
     dirLen = len(directions)
-
-    #print(currentPos)
-
     while True:
-        nextPos = getNextPos(routes, currentPos, directions[index])
-        currentPos = nextPos
+        currentPos = [routes[key][directions[index]] for key in currentPos] #getNextPos(routes, currentPos, directions[index])
+        #currentPos = nextPos
         #print(currentPos)
         countJumps += 1
         if checkEnd(currentPos):
@@ -73,6 +79,43 @@ def solution2(listInput):
         else:
             index = (index + 1) % dirLen
     return countJumps
+
+def solution22(listInput):
+    directions = getDirection(listInput[0]) # [0, 1, 1, 0, ...]
+    routes = getRoutesDict(listInput[2:]) # {'AAA' : ['BBB', 'CCC'], ...}
+    countJumps = 0
+    currentPos = getAllCurrentPos(routes) # ['11A', '22A', ...]
+    index_dir = 0
+    index_pos = 0
+    dirLen = len(directions)
+    posLen = len(currentPos)
+    print(currentPos)
+    while True:
+        nextPos = routes[currentPos[index_pos]][directions[index_dir]] #getNextPos(routes, currentPos[index_pos], directions[index_dir])
+        currentPos[index_pos] = nextPos
+        print(currentPos)
+        countJumps += 1
+        if currentPos[index_pos].endswith('Z'):
+            currentPos[index_pos] = countJumps
+            countJumps = 0
+            index_dir = 0
+            index_pos = (index_pos + 1) % posLen
+            if index_pos == 0 : 
+                print(currentPos)
+                break
+        else:
+            index_dir = (index_dir + 1) % dirLen
+    return currentPos
+
+def lcm_of_list(numbers):
+    def lcm(x, y):
+        return x * y // math.gcd(x, y)
+
+    result = 1
+    for number in numbers:
+        result = lcm(result, number)
+
+    return result
 
 if __name__ == '__main__':
     control = input.getControlInput('2023', 'Day_8')
@@ -84,11 +127,13 @@ if __name__ == '__main__':
     print('Puzzle =',countJumps)
 
     control = input.getControlInput('2023', 'Day_8_P2')
-    countJumps = solution2(control)
-    print('Control P2:', countJumps)
+    currentPos = solution22(control)
+    print('Control P2 LCM inputs:', currentPos)
+    print('LCM output:', lcm_of_list(currentPos))
 
-    countJumps = solution2(puzzle)
-    print('Puzzle P2:', countJumps)
+    currentPos = solution22(puzzle)
+    print('Puzzle P2 LCM inputs:', currentPos)
+    print('LCM output:', lcm_of_list(currentPos))
                 
 ################################################################
 class TestStringMethods(unittest.TestCase):
@@ -125,4 +170,6 @@ class TestStringMethods(unittest.TestCase):
         currentPos = ['11Z', '22V']
         self.assertEqual(False, checkEnd(currentPos))
         currentPos = ['11Z', '22Z']
+        self.assertEqual(True, checkEnd(currentPos))
+        currentPos = '11Z'
         self.assertEqual(True, checkEnd(currentPos))
